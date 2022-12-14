@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr v-for="(contact, index) in contactList.sort((a, b) => (a.name > b.name) ? 1 : -1)" :key="index" :class="{'active':contact.justCreated}">
-          <td><div class="name-initial" style="background:{{contact.color}}">{{(contact.name).substring(0, 1)}}</div></td>
+          <td><div class="name-initial" :style="{'background':contact.color}">{{(contact.name).substring(0, 1)}}</div></td>
           <td>{{contact.name}}</td>
           <td>{{contact.email}}</td>
           <td>{{contact.phone}}</td>
@@ -85,8 +85,9 @@ export default {
   },
   methods: {
     addContact(name,email,phone) {
+      let color = "#"+Math.floor(Math.random()*16777215).toString(16);
       this.contactList.push({
-        color: Math.floor(Math.random()*16777215).toString(16),
+        color: color,
         name: name,
         email: email,
         phone: phone,
